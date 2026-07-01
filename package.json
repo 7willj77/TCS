@@ -1,0 +1,10 @@
+{
+  "name": "the-card-society-breaks-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update:data": "node scripts/update-data.js"
+  },
+  "dependencies": {}
+}
