@@ -160,8 +160,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.92)),
-        url("https://images.unsplash.com/photo-1529981188441-8a2e6fe30103?auto=format&fit=crop&w=1800&q=80");
+        linear-gradient(rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.94)),
+        url("https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1800&q=80");
       background-size: cover;
       background-position: center;
       opacity: 0.34;
@@ -363,8 +363,8 @@
     .show-image {
       height: 310px;
       background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.8)),
-        url("https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=1000&q=80");
+        linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.72)),
+        url("show-image.png");
       background-size: cover;
       background-position: center;
       position: relative;
@@ -446,55 +446,17 @@
       font-weight: 900;
     }
 
-    .sales-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .sale-card {
-      border-radius: 24px;
-      background: rgba(17, 17, 17, 0.9);
-      border: 1px solid var(--border);
+    .ebay-iframe-card {
+      padding: 0;
       overflow: hidden;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      min-height: 800px;
+      background: #ffffff;
     }
 
-    .sale-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(240, 210, 122, 0.65);
-    }
-
-    .sale-card img {
+    .ebay-iframe-card iframe {
+      display: block;
       width: 100%;
-      height: 230px;
-      object-fit: cover;
-      background: #090909;
-    }
-
-    .sale-body {
-      padding: 16px;
-    }
-
-    .sale-body h3 {
-      font-size: 16px;
-      line-height: 1.25;
-      margin-bottom: 9px;
-    }
-
-    .price {
-      color: var(--gold-light);
-      font-size: 19px;
-      font-weight: 900;
-      margin-bottom: 12px;
-    }
-
-    .mini-link {
-      color: var(--gold-light);
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      font-weight: 800;
+      background: #ffffff;
     }
 
     .reviews-grid {
@@ -581,7 +543,6 @@
         grid-template-columns: 1fr;
       }
 
-      .sales-grid,
       .reviews-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -597,7 +558,6 @@
       }
 
       .stats,
-      .sales-grid,
       .reviews-grid {
         grid-template-columns: 1fr;
       }
@@ -617,6 +577,12 @@
 
       .show-image {
         height: 260px;
+      }
+
+      .ebay-iframe-card,
+      .ebay-iframe-card iframe {
+        min-height: 700px;
+        height: 700px;
       }
     }
   </style>
@@ -738,7 +704,7 @@
           <div class="shows-grid">
             <article class="card show-card">
               <div class="show-image">
-                <div class="show-badge">Upcoming</div>
+                <div class="show-badge">Today 19:15</div>
                 <div class="bookmark">♡</div>
               </div>
 
@@ -789,7 +755,7 @@
               <div class="eyebrow">eBay Singles Sales</div>
               <h2>Singles Available Now</h2>
               <p>
-                A premium showcase for current eBay singles. This section is loaded from your daily updated data.json file.
+                Browse current singles directly from The Card Society eBay store.
               </p>
             </div>
 
@@ -799,11 +765,20 @@
               target="_blank"
               rel="noopener"
             >
-              Visit eBay Store
+              Open eBay Store
             </a>
           </div>
 
-          <div class="sales-grid" id="ebaySales"></div>
+          <div class="card ebay-iframe-card">
+            <iframe
+              src="https://www.ebay.co.uk/usr/thecardsociety"
+              width="100%"
+              height="800"
+              style="border: none;"
+              loading="lazy"
+              title="The Card Society eBay Store"
+            ></iframe>
+          </div>
         </div>
       </section>
 
@@ -948,54 +923,10 @@
 
         const data = await response.json();
 
-        renderEbayItems(data.ebayItems || []);
         renderReviews(data.whatnot?.reviews || []);
       } catch (error) {
         console.error("Could not load data.json", error);
-
-        renderEbayItems([]);
       }
-    }
-
-    function renderEbayItems(items) {
-      const ebaySales = document.getElementById("ebaySales");
-
-      if (!ebaySales) return;
-
-      ebaySales.innerHTML = "";
-
-      if (!items.length) {
-        ebaySales.innerHTML = `
-          <article class="sale-card">
-            <a href="https://www.ebay.co.uk/usr/thecardsociety" target="_blank" rel="noopener">
-              <div class="sale-body">
-                <h3>View current singles on eBay</h3>
-                <div class="price">Live store</div>
-                <span class="mini-link">Open eBay →</span>
-              </div>
-            </a>
-          </article>
-        `;
-        return;
-      }
-
-      items.forEach(item => {
-        const card = document.createElement("article");
-        card.className = "sale-card";
-
-        card.innerHTML = `
-          <a href="${item.link}" target="_blank" rel="noopener">
-            <img src="${item.image}" alt="${item.title}">
-            <div class="sale-body">
-              <h3>${item.title}</h3>
-              <div class="price">${item.price}</div>
-              <span class="mini-link">View on eBay →</span>
-            </div>
-          </a>
-        `;
-
-        ebaySales.appendChild(card);
-      });
     }
 
     function renderReviews(reviews) {
