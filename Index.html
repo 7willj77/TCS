@@ -921,69 +921,37 @@
     </footer>
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+ document.getElementById("year").textContent = new Date().getFullYear();
 
-    /*
-      EBAY SINGLES SECTION
+const ebayItems = [
+  {
+    title: "Football Card Single",
+    price: "View price on eBay",
+    image: "https://images.unsplash.com/...",
+    link: "https://www.ebay.co.uk/usr/thecardsociety"
+  },
+  ...
+];
 
-      Replace these with live listings from:
-      https://www.ebay.co.uk/usr/thecardsociety
+const ebaySales = document.getElementById("ebaySales");
 
-      For automatic daily updates, this needs either:
-      1. eBay Browse API
-      2. a small serverless function
-      3. a scheduled scraper that writes to a JSON file every 24 hours
+ebayItems.forEach(item => {
+  const card = document.createElement("article");
+  card.className = "sale-card";
 
-      Pure browser HTML cannot safely scrape eBay listings because of CORS and anti-bot controls.
-    */
+  card.innerHTML = `
+    <a href="${item.link}" target="_blank" rel="noopener">
+      <img src="${item.image}" alt="${item.title}">
+      <div class="sale-body">
+        <h3>${item.title}</h3>
+        <div class="price">${item.price}</div>
+        <span class="mini-link">View on eBay →</span>
+      </div>
+    </a>
+  `;
 
-    const ebayItems = [
-      {
-        title: "Football Card Single",
-        price: "View price on eBay",
-        image: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=800&q=80",
-        link: "https://www.ebay.co.uk/usr/thecardsociety"
-      },
-      {
-        title: "Numbered Card / Parallel",
-        price: "View price on eBay",
-        image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=800&q=80",
-        link: "https://www.ebay.co.uk/usr/thecardsociety"
-      },
-      {
-        title: "Autograph / Insert Card",
-        price: "View price on eBay",
-        image: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=800&q=80",
-        link: "https://www.ebay.co.uk/usr/thecardsociety"
-      },
-      {
-        title: "Patch / Memorabilia Card",
-        price: "View price on eBay",
-        image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80",
-        link: "https://www.ebay.co.uk/usr/thecardsociety"
-      }
-    ];
-
-    const ebaySales = document.getElementById("ebaySales");
-
-    ebayItems.forEach(item => {
-      const card = document.createElement("article");
-      card.className = "sale-card";
-
-      card.innerHTML = `
-        <a href="${item.link}" target="_blank" rel="noopener">
-          <img src="${item.image}" alt="${item.title}">
-          <div class="sale-body">
-            <h3>${item.title}</h3>
-            <div class="price">${item.price}</div>
-            <span class="mini-link">View on eBay →</span>
-          </div>
-        </a>
-      `;
-
-      ebaySales.appendChild(card);
-    });
-  </script>
+  ebaySales.appendChild(card);
+});
+</script>
 </body>
 </html>
