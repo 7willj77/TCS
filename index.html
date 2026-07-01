@@ -14,7 +14,6 @@
   <style>
     :root {
       --black: #050505;
-      --black-soft: #0d0d0d;
       --black-card: #111111;
       --gold: #c9a24a;
       --gold-light: #f0d27a;
@@ -124,7 +123,6 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
       border: 1px solid var(--border);
       background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
       color: #050505;
@@ -446,17 +444,65 @@
       font-weight: 900;
     }
 
-    .ebay-iframe-card {
-      padding: 0;
-      overflow: hidden;
-      min-height: 800px;
-      background: #ffffff;
+    .ebay-link-card {
+      padding: 34px;
+      background:
+        radial-gradient(circle at right, rgba(201, 162, 74, 0.18), transparent 48%),
+        linear-gradient(145deg, rgba(201, 162, 74, 0.08), rgba(255, 255, 255, 0.015)),
+        var(--black-card);
     }
 
-    .ebay-iframe-card iframe {
-      display: block;
-      width: 100%;
-      background: #ffffff;
+    .ebay-link-content {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .ebay-link-content h3 {
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .ebay-link-content p {
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 22px;
+    }
+
+    .ebay-logo-panel {
+      min-height: 280px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(145deg, rgba(240, 210, 122, 0.14), rgba(255, 255, 255, 0.02)),
+        rgba(0, 0, 0, 0.35);
+      text-align: center;
+    }
+
+    .ebay-logo-panel span {
+      font-size: 64px;
+      font-weight: 900;
+      letter-spacing: -3px;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+
+    .ebay-logo-panel strong {
+      font-size: 20px;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .ebay-logo-panel small {
+      color: var(--muted);
+      margin-top: 6px;
     }
 
     .reviews-grid {
@@ -539,7 +585,8 @@
 
     @media (max-width: 980px) {
       .hero-grid,
-      .shows-grid {
+      .shows-grid,
+      .ebay-link-content {
         grid-template-columns: 1fr;
       }
 
@@ -579,10 +626,12 @@
         height: 260px;
       }
 
-      .ebay-iframe-card,
-      .ebay-iframe-card iframe {
-        min-height: 700px;
-        height: 700px;
+      .ebay-link-card {
+        padding: 24px;
+      }
+
+      .ebay-logo-panel span {
+        font-size: 48px;
       }
     }
   </style>
@@ -755,7 +804,7 @@
               <div class="eyebrow">eBay Singles Sales</div>
               <h2>Singles Available Now</h2>
               <p>
-                Browse current singles directly from The Card Society eBay store.
+                Browse current singles, numbered cards, parallels and case hits directly from The Card Society eBay store.
               </p>
             </div>
 
@@ -769,15 +818,40 @@
             </a>
           </div>
 
-          <div class="card ebay-iframe-card">
-            <iframe
-              src="https://www.ebay.co.uk/usr/thecardsociety"
-              width="100%"
-              height="800"
-              style="border: none;"
-              loading="lazy"
-              title="The Card Society eBay Store"
-            ></iframe>
+          <div class="card ebay-link-card">
+            <div class="ebay-link-content">
+              <div>
+                <div class="eyebrow">Live eBay Store</div>
+
+                <h3>Shop The Card Society Singles</h3>
+
+                <p>
+                  eBay blocks direct embedding, so the cleanest experience is to send visitors straight to the live store.
+                  Browse live singles, numbered cards, parallels, inserts and case hits directly through eBay.
+                </p>
+
+                <div class="feature-list">
+                  <div class="feature"><span>◆</span> Football singles and inserts</div>
+                  <div class="feature"><span>◆</span> Numbered cards, parallels and case hits</div>
+                  <div class="feature"><span>◆</span> Secure checkout directly through eBay</div>
+                </div>
+
+                <a
+                  class="btn"
+                  href="https://www.ebay.co.uk/usr/thecardsociety"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Shop Singles on eBay
+                </a>
+              </div>
+
+              <div class="ebay-logo-panel">
+                <span>eBay</span>
+                <strong>The Card Society</strong>
+                <small>Live singles store</small>
+              </div>
+            </div>
           </div>
         </div>
       </section>
