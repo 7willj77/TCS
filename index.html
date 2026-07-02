@@ -150,7 +150,7 @@
 
     .hero {
       position: relative;
-      padding: 88px 0 70px;
+      padding: 70px 0 52px;
     }
 
     .hero::before {
@@ -242,7 +242,7 @@
       text-transform: uppercase;
       font-size: 12px;
       letter-spacing: 1.4px;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
 
     .eyebrow::before {
@@ -259,7 +259,7 @@
       line-height: 0.94;
       letter-spacing: -2.8px;
       max-width: 760px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .gold-text {
@@ -273,14 +273,14 @@
       font-size: clamp(17px, 2vw, 22px);
       color: var(--muted);
       max-width: 660px;
-      margin-bottom: 30px;
+      margin-bottom: 26px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-bottom: 36px;
+      margin-bottom: 30px;
     }
 
     .stats {
@@ -311,7 +311,7 @@
     }
 
     section {
-      padding: 78px 0;
+      padding: 48px 0;
       position: relative;
     }
 
@@ -320,7 +320,7 @@
       justify-content: space-between;
       align-items: end;
       gap: 24px;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
     }
 
     .section-head h2 {
@@ -332,7 +332,7 @@
     .section-head p {
       color: var(--muted);
       max-width: 560px;
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
     .card {
@@ -366,18 +366,6 @@
       background-size: cover;
       background-position: center;
       position: relative;
-    }
-
-    .show-badge {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      background: var(--white);
-      color: #111;
-      font-size: 13px;
-      font-weight: 800;
-      padding: 7px 12px;
-      border-radius: 8px;
     }
 
     .bookmark {
@@ -465,12 +453,6 @@
       margin-bottom: 16px;
     }
 
-    .ebay-link-content p {
-      color: var(--muted);
-      max-width: 680px;
-      margin-bottom: 22px;
-    }
-
     .ebay-logo-panel {
       min-height: 280px;
       border: 1px solid var(--border);
@@ -541,7 +523,7 @@
 
     .cta {
       text-align: center;
-      padding: 74px 30px;
+      padding: 58px 30px;
       background:
         radial-gradient(circle at center, rgba(201, 162, 74, 0.18), transparent 55%),
         linear-gradient(145deg, rgba(201, 162, 74, 0.09), rgba(255, 255, 255, 0.015)),
@@ -571,7 +553,7 @@
 
     footer {
       border-top: 1px solid var(--border);
-      padding: 34px 0;
+      padding: 30px 0;
       color: var(--muted);
       font-size: 13px;
     }
@@ -601,7 +583,11 @@
 
     @media (max-width: 620px) {
       .hero {
-        padding-top: 52px;
+        padding-top: 46px;
+      }
+
+      section {
+        padding: 38px 0;
       }
 
       .stats,
@@ -753,7 +739,6 @@
           <div class="shows-grid">
             <article class="card show-card">
               <div class="show-image">
-                <div class="show-badge">Today 19:15</div>
                 <div class="bookmark">♡</div>
               </div>
 
@@ -825,11 +810,6 @@
 
                 <h3>Shop The Card Society Singles</h3>
 
-                <p>
-                  eBay blocks direct embedding, so the cleanest experience is to send visitors straight to the live store.
-                  Browse live singles, numbered cards, parallels, inserts and case hits directly through eBay.
-                </p>
-
                 <div class="feature-list">
                   <div class="feature"><span>◆</span> Football singles and inserts</div>
                   <div class="feature"><span>◆</span> Numbered cards, parallels and case hits</div>
@@ -893,6 +873,24 @@
             <article class="card review">
               <div class="stars">★★★★★</div>
               <p>Top quality breaks and a brilliant experience from start to finish.</p>
+              <small>WhatNot buyer review</small>
+            </article>
+
+            <article class="card review">
+              <div class="stars">★★★★★</div>
+              <p>Cards arrived quickly, well protected and exactly as expected.</p>
+              <small>WhatNot buyer review</small>
+            </article>
+
+            <article class="card review">
+              <div class="stars">★★★★★</div>
+              <p>Brilliant seller, smooth break and a great atmosphere throughout.</p>
+              <small>WhatNot buyer review</small>
+            </article>
+
+            <article class="card review">
+              <div class="stars">★★★★★</div>
+              <p>Really enjoyable stream with a professional setup and quality service.</p>
               <small>WhatNot buyer review</small>
             </article>
           </div>
@@ -1010,7 +1008,7 @@
 
       reviewsGrid.innerHTML = "";
 
-      reviews.slice(0, 3).forEach(review => {
+      reviews.slice(0, 6).forEach(review => {
         const stars = "★".repeat(review.rating || 5);
 
         reviewsGrid.innerHTML += `
